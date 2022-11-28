@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="StorageX.Pages.CreateNewItemPage">
+    <ScrollView Padding="5">
+        <StackLayout>
+            <Image x:Name="PhotoImage"
+               HeightRequest="150"
+               WidthRequest="150"
+               BackgroundColor="DarkGray">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                Tapped="CapturePhoto"
+                NumberOfTapsRequired="2" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Button Text="Зняти фото" Clicked="CapturePhoto" BorderWidth="0" BackgroundColor="Transparent" TextColor="Blue" FontSize="25"/>
+            <Entry x:Name="Nametb" Placeholder="Назва" FontSize="25" HorizontalTextAlignment="Center" />
+            <Entry x:Name="Pricetb" Placeholder="Ціна" FontSize="25" Keyboard="Numeric" HorizontalOptions="FillAndExpand" />
+            <Entry x:Name="Purchasetb" Placeholder="Закупочна ціна" FontSize="25" IsReadOnly="False" Keyboard="Numeric"/>
+            <StackLayout Padding="0,0,0,0" VerticalOptions="CenterAndExpand" Orientation="Horizontal" WidthRequest="180">
+                <Label Text="Доріжка" FontSize="25" VerticalOptions="CenterAndExpand"/>
+                <Switch x:Name="Switcher" IsToggled="false" Toggled="Switcher_Toggled" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry HorizontalOptions="FillAndExpand" x:Name="Widthtb" Placeholder="Ширина" FontSize="25" Keyboard="Numeric" />
+                <Label FontSize="25" VerticalOptions="CenterAndExpand" Text="X"/>
+                <Entry HorizontalOptions="FillAndExpand" x:Name="Heighttb" Placeholder="Довжина" Keyboard="Numeric" FontSize="25" />
+            </StackLayout>
+            <Entry x:Name="Amounttb" Placeholder="Кількість" Keyboard="Numeric" FontSize="25" />
+            <Entry x:Name="barcodeText" Placeholder="Штрих-код" FontSize="25" IsReadOnly="True">
+                <Entry.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="ScanerShow"
+                        NumberOfTapsRequired="1"/>
+                </Entry.GestureRecognizers>
+            </Entry>
+            <Picker x:Name="Picker" FontSize="25" Title="Оберіть категорію" ItemsSource="{Binding AllCategories}"/>
+            <Button
+            Clicked="SaveClicked"
+            HeightRequest="60"
+            BackgroundColor="Green"
+            Text="Зберегти"/>
+            <Button
+            Clicked="ClearClicked"
+            HeightRequest="50"
+            BackgroundColor="LightCoral"
+            Text="Очистити"/>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

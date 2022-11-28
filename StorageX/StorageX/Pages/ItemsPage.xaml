@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    Title="Товари"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:StorageX.Models"
+    x:Class="StorageX.Pages.ItemsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Додати" Clicked="AddItem" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <local:Item/>
+    </ContentPage.BindingContext>
+    <StackLayout Padding="5">
+        <Button Text="Фільтр" TextColor="Black" BackgroundColor="LightGray" BorderColor="Gray" BorderWidth="2" Clicked="FilterShow"/>
+        <Frame Padding="5" BackgroundColor="Transparent" BorderColor="Black" HasShadow="False" x:Name="filterView" IsVisible="false">
+            <StackLayout>
+                <Label Text="За типом:"/>
+                <Picker x:Name="pickerType" Title="Оберіть тип" ItemsSource="{Binding AllTypes}" />
+
+                <Label Text="За категорією:"/>
+                <Picker x:Name="pickerCategory" Title="Оберіть категорію" ItemsSource="{Binding AllCategories}" />
+                <StackLayout Orientation="Horizontal">
+                    <Button HorizontalOptions="FillAndExpand" BackgroundColor="LightCoral" Text="Очистити" HeightRequest="50" Clicked="FilterClear"/>
+                    <Button HorizontalOptions="FillAndExpand" BackgroundColor="LightGreen" Text="Застосувати" HeightRequest="50" Clicked="FilterRun"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+
+        <ListView x:Name="list" ItemSelected="list_ItemSelected"
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              CachingStrategy="RecycleElement">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="5">
+                            <Frame CornerRadius="20" HasShadow="False" BorderColor="Black">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding ImageFullPath}" HeightRequest="100" WidthRequest="150"/>
+                                    <StackLayout VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" VerticalOptions="Center" FontSize="Large"/>
+                                        <Label Text="{Binding Description}" VerticalOptions="Center" FontSize="Medium"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
+

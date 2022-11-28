@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:StorageX.PageModel"
+    xmlns:pages="clr-namespace:StorageX.Pages"
+    xmlns:local1="clr-namespace:StorageX"
+    Title="Меню"
+    x:Class="StorageX.Pages.FlyoutMenuPage">
+    <StackLayout BackgroundColor="#C0C0C0">
+        <Label Margin="0, 30, 0, 0" Text="Меню" FontSize="30" HorizontalOptions="CenterAndExpand"/>
+        <ListView BackgroundColor="Transparent" x:Name="list" x:FieldModifier="public">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type local:FlyoutItemPage}">
+                    <local:FlyoutItemPage Title="Головна" TargetPage="{x:Type local1:MainPage}"/>
+                    <local:FlyoutItemPage Title="Постачальники"/>
+                    <local:FlyoutItemPage Title="Категорії" TargetPage="{x:Type pages:CategoriesPage}"/>
+                    <local:FlyoutItemPage Title="Звіти продаж" TargetPage="{x:Type pages:DateInvoice}"/>
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="20" Text="{Binding Title}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+</ContentPage>
+

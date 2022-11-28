@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:StorageX.Models"
+    x:Class="StorageX.Pages.ItemDetailPage"
+    xmlns:converter = "clr-namespace:StorageX.DataProcesor">
+    <ContentPage.BindingContext>
+        <local:Item/>
+    </ContentPage.BindingContext>
+      <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DoubleToStringConverter x:Key="DoubleConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Змінити" Clicked="Edit" />
+    </ContentPage.ToolbarItems>
+    <ScrollView x:Name="scrollView" Padding="5">
+        <StackLayout x:Name="contentLayout">
+            <Image Source="{Binding ImageFullPath}"
+               HeightRequest="150"
+               WidthRequest="150"/>
+            <Entry Text="{Binding Name}" FontSize="25" IsReadOnly="True" HorizontalTextAlignment="Center" />
+            <Label Text="{Binding Description}" FontSize="Small" HorizontalTextAlignment="Center"/>
+            <Label Text="Ціна" FontSize="Medium" />
+            <Entry Text="{Binding Price, Converter={StaticResource DoubleConverter}}" FontSize="20" IsReadOnly="True"/>
+            <Label Text="Закупочна ціна" FontSize="Medium" />
+            <Entry Text="{Binding Purchase, Converter={StaticResource DoubleConverter}}" FontSize="20" IsReadOnly="True"/>
+            <Label Text="Тип товару" FontSize="Medium" />
+            <Entry x:Name="productType" FontSize="20" IsReadOnly="True"/>
+            <StackLayout x:Name="amountView">
+            <Label Text="Кількість" FontSize="Medium" />
+            <Entry x:Name="amounttb" Text="{Binding Amount}" FontSize="20" IsReadOnly="True"/>
+            </StackLayout>
+            <Label Text= "Ширина" FontSize="Medium" />
+            <Entry Text="{Binding Width, Converter={StaticResource DoubleConverter}}" FontSize="20" IsReadOnly="True"/>
+            <Label Text= "Довжина" FontSize="Medium" />
+            <Entry x:Name="heighttb" Text="{Binding Height, Converter={StaticResource DoubleConverter}}" FontSize="20" IsReadOnly="True"/>
+            <Label Text= "Штрих-код" FontSize="Medium" />
+            <Entry Text="{Binding Barcode}" FontSize="20" IsReadOnly="True"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Купити" Clicked="BuyClicked" HeightRequest="70" HorizontalOptions="FillAndExpand" BackgroundColor="LightGreen" />
+                <Button Text="Продати" Clicked="SellClicked" HeightRequest="70" HorizontalOptions="FillAndExpand" BackgroundColor="LightCoral" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+

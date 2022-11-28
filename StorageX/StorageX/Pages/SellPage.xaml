@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="StorageX.Pages.SellPage"
+    Title="Продаж"
+    xmlns:converter = "clr-namespace:StorageX.DataProcesor">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DoubleToStringConverter x:Key="DoubleConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Padding="10">
+        <Image Source="{Binding ImageFullPath}"
+               HeightRequest="150"
+               WidthRequest="150"/>
+        <Label Text="{Binding Name}" FontSize="25" HorizontalTextAlignment="Center" />
+        <Label Text="{Binding Description}" FontSize="Small" HorizontalTextAlignment="Center"/>
+        <Label Text="Введіть кількість"/>
+        <StackLayout Orientation="Horizontal">
+            <Entry Text="0" HorizontalOptions="FillAndExpand" x:Name="amountEntry" Keyboard="Numeric" TextChanged="amountEntry_TextChanged"/>
+            <Stepper HorizontalOptions="FillAndExpand" x:Name="amountStepper" Value="0" Increment="1" ValueChanged="amountStepper_ValueChanged"/>
+        </StackLayout>
+        <Label Text="Введіть ціну"/>
+        <Entry HorizontalOptions="FillAndExpand" x:Name="priceEntry" Keyboard="Numeric"/>
+        <Button Text="Продати" TextColor="Black" Padding="10" HeightRequest="70" BackgroundColor="LightGreen" BorderWidth="2" CornerRadius="10" Clicked="SaveButtonClicked"/>
+    </StackLayout>
+</ContentPage>

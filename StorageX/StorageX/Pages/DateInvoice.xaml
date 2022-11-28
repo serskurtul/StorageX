@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="StorageX.Pages.DateInvoice">
+    <StackLayout>
+        <Frame Padding="10" Margin="10" HasShadow="False" BorderColor="Black">
+            <StackLayout>
+                <Label Text="Оберіть дату"/>
+                <DatePicker x:Name="datePicker" PropertyChanged="datePicker_PropertyChanged"/>
+            </StackLayout>
+        </Frame>
+        <Frame x:Name="SellsPanel" Margin="10" Padding="10" IsVisible="false" HasShadow="False" BorderColor="Black">
+            <StackLayout>
+                <Label Text="Продажі за " HorizontalOptions="Center" FontSize="Large"/>
+                <Label x:Name="labelSells" FontSize="Medium"/>
+                <Label x:Name="labelTotal" HorizontalOptions="End"/>
+                <Button Text="Деталі" Clicked="Button_Clicked"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>
+
